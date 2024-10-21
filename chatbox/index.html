@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Socket.IO chat</title>
+    <link href="./style.css" rel="stylesheet" >
+  </head>
+  <body>
+    <div id="messages-container">
+      <ul id="messages"></ul>      
+    </div>
+
+    <form id="form" action="">
+      <input id="user" />
+      <button id="color" type="button">colors</button>
+      <input id="input" autocomplete="off" /><button type="submit">Send</button>
+    </form>
+
+    <div id="color-picker" class="color-picker-up">
+      <button id="color-close">close</button>
+    </div>
+    <script src="./colorPicker.js"></script>
+
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="./index.js"></script>
+  </body>
+</html>

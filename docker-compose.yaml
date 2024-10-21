@@ -1,0 +1,44 @@
+services:
+  db:
+    container_name: chatroom-database
+    image: mysql:8.4.0-oraclelinux8
+    environment:
+      MYSQL_ROOT_PASSWORD: ${DBPASSWORD}
+    networks:
+      - chatroom
+    ports:
+      - 1301:3306
+
+  adminer:
+    container_name: chatroom-adminer
+    image: adminer
+    ports: 
+      - 1302:8080
+    networks:
+      - chatroom
+
+  app:
+    container_name: chatroom-app
+    image: my-chatroom-app
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.chatroom.rule=Host(`chatroom.shyguymatt.com`)
+      - traefik.http.routers.chatroom.entrypoints=web
+    ports:
+     - 1300:1300
+    networks:
+      - web
+      - chatroom
+    links: 
+      - db
+
+  bot:
+    image: chatroom_bot
+    container_name: chatroom_bot
+
+networks:
+  chatroom:
+    driver: bridge
+  web:
+    driver: bridge
+    external: true
