@@ -4,9 +4,9 @@ const dotenv = require('dotenv')
 dotenv.config();
 
 const db = createPool({
-  host: DBHOST,
-  user: DBUSER,
-  password: DBPASSWORD,
+  host: process.env.DBHOST,
+  user: process.env.DBUSER,
+  password: process.env.DBPASSWORD,
   database: 'chatroomMessages'
 }).promise()
 
